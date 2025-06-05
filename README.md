@@ -1,33 +1,33 @@
-# Text Analytics & Emotion Classification
+# Text Analytics for Emotion Classification and Biomedical Named Entity Recognition
 
-A comprehensive project applying classical machine learning, deep learning (CNN), and advanced NLP (RoBERTa) to emotion classification, topic modeling, and named entity recognition on social text data.
-
-[Connect on LinkedIn](https://www.linkedin.com/in/uchit-bhadauriya-a96478204)
-
----
-
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Project Structure](#project-structure)
-- [Tasks & Methods](#tasks--methods)
-- [Getting Started](#getting-started)
-- [Results & Visualizations](#results--visualizations)
-- [Improvements & Future Work](#improvements--future-work)
-- [License](#license)
-- [Contact](#contact)
-
----
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/uchit-bhadauriya-a96478204)
 
 ## Overview
 
-This project explores an end-to-end NLP workflow including:
-- **Emotion classification** with Naive Bayes and CNNs
-- **Topic modeling** using Non-negative Matrix Factorization (NMF)
-- **Named Entity Recognition (NER)** with a transformer (RoBERTa)
-- **Biomedical entity similarity analysis**
+This repository presents a comprehensive exploration of text analytics techniques for **emotion classification in tweets** and **biomedical named entity recognition (NER)**. It features classic machine learning models (Naive Bayes), deep learning (CNN, RoBERTa), and topic modeling (NMF), accompanied by in-depth evaluation and analysis.
 
-All results are demonstrated on imbalanced, real-world text datasets, with interpretability and practical evaluation in focus.
+**Core Tasks:**
+- **Task 1:** Emotion classification in tweets using Naive Bayes and CNN
+- **Task 2:** Biomedical NER with RoBERTa and entity similarity analysis using BERT/Word2Vec
+
+---
+
+## Table of Contents
+
+- [Project Structure](#project-structure)
+- [Task 1: Emotion Classification](#task-1-emotion-classification)
+  - [1.1 Naive Bayes Classifier](#11-naive-bayes-classifier)
+  - [1.2 CNN Classifier](#12-cnn-classifier)
+  - [1.3 Evaluation & Discussion](#13-evaluation--discussion)
+  - [1.4 Topic Modeling with NMF](#14-topic-modeling-with-nmf)
+- [Task 2: Biomedical NER](#task-2-biomedical-ner)
+  - [2.1 RoBERTa-based Sequence Tagger](#21-roberta-based-sequence-tagger)
+  - [2.2 Evaluation & Results](#22-evaluation--results)
+  - [2.3 Disease Entity Similarity Analysis](#23-disease-entity-similarity-analysis)
+- [Installation & Usage](#installation--usage)
+- [Results Summary](#results-summary)
+- [References](#references)
+- [Contact](#contact)
 
 ---
 
@@ -36,160 +36,76 @@ All results are demonstrated on imbalanced, real-world text datasets, with inter
 
 ---
 
-## Tasks & Methods
+## Task 1: Emotion Classification
 
-### 1. Emotion Classification
+### 1.1 Naive Bayes Classifier
 
-#### Naive Bayes Classifier
-- **Preprocessing:** Tokenization, lowercasing, noise removal (URLs, mentions, hashtags, punctuation, numbers), stopword removal, lemmatization.
-- **Features:** CountVectorizer (word counts).
-- **Strengths:** Fast, simple, good for small/imbalanced datasets.
-- **Limitations:** Independence assumption, struggles with feature correlations.
+- **Algorithm:** Multinomial Naive Bayes  
+- **Preprocessing:** Tokenization, lowercasing, removal of URLs/mentions/punctuation/numbers, stopword removal, lemmatization  
+- **Feature Representation:** Count Vectorizer  
+- **Strengths:** Fast, scalable, robust to irrelevant features  
+- **Limitations:** Assumes feature independence, limited with correlated features or imbalanced data
 
-#### Convolutional Neural Network (CNN)
-- **Preprocessing:** Same as above + sequence padding for input.
-- **Features:** Pre-trained embeddings (e.g., GloVe).
-- **Strengths:** Learns local/hierarchical features, benefits from transfer learning.
-- **Limitations:** Needs more data, higher computation.
+### 1.2 CNN Classifier
+
+- **Architecture:** Embedding layer (with GloVe), convolutional layers, pooling, dense output  
+- **Advantages:** Learns local and hierarchical features, leverages pre-trained word embeddings  
+- **Preprocessing:** Similar to Naive Bayes, plus sequence padding and embedding preparation
+
+### 1.3 Evaluation & Discussion
+
+**Metrics Used:**
+- Accuracy, Precision, Recall, F1-Score
+
+| Model        | Accuracy | F1-Score |
+|--------------|----------|----------|
+| Naive Bayes  | ~67%     | 0.65     |
+| CNN          | ~70%     | 0.63     |
+
+- **CNN outperforms Naive Bayes** in capturing text nuance.
+- Both models suffer from class imbalance; further improvements possible with data augmentation, class weighting, and advanced feature engineering.
+
+### 1.4 Topic Modeling with NMF
+
+- **Method:** Non-negative Matrix Factorization (NMF) on TF-IDF vectors
+- **Purpose:** Discover themes/topics within emotions (joy, optimism, etc.)
+- **Result:**  
+  - **Joy:** Themes include celebrations, humor, social events.
+  - **Optimism:** Themes of overcoming challenges, inspirational quotes.
 
 ---
 
-### 2. Topic Modeling (NMF)
+## Task 2: Biomedical Named Entity Recognition
 
-- **Steps:** Tokenization, lowercasing, stopword removal, TF-IDF transformation.
-- **Goal:** Extract latent topics/word groups for each emotion label, providing insight into how emotions are expressed.
+### 2.1 RoBERTa-based Sequence Tagger
+
+- **Approach:** Fine-tuned RoBERTa model using BIO tagging for NER  
+- **Features:** Contextual embeddings, POS tags, character-level patterns
+
+### 2.2 Evaluation & Results
+
+**Validation Set Results:**
+
+| Entity Type | Precision | Recall | F1-Score |
+|-------------|-----------|--------|----------|
+| 0           | 0.99      | 0.98   | 0.98     |
+| 1           | 0.84      | 0.91   | 0.88     |
+| ...         | ...       | ...    | ...      |
+
+- **High precision and recall** for key entity types  
+- Common errors: ambiguous boundaries, entity type confusion, rare entity misses
+
+### 2.3 Disease Entity Similarity Analysis
+
+- **Techniques:** BERT and Word2Vec embeddings, cosine similarity  
+- **Goal:** Find diseases most/least similar to a given query (e.g., “dyskinesia”)  
+- **Insight:** BERT provides richer context, Word2Vec is faster but less nuanced
 
 ---
 
-### 3. Named Entity Recognition (NER) with RoBERTa
-
-- **Architecture:** Fine-tuned RoBERTa transformer with BIO tagging.
-- **Features:** RoBERTa embeddings, POS tags, character/context features.
-- **Strengths:** High contextual understanding, state-of-the-art results.
-
----
-
-### 4. Biomedical Entity Similarity
-
-- **Techniques:** BERT embeddings, Word2Vec, cosine similarity.
-- **Goal:** Identify most/least similar disease entities in biomedical text.
-
----
-
-## Getting Started
+## Installation & Usage
 
 1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/<your-username>/<repo-name>.git
-    cd <repo-name>
-    ```
-
-2. **Install requirements:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-3. **Run notebooks:**
-    - Launch Jupyter and open any notebook of interest.
-    - Execute cells to preprocess, train, and evaluate models.
-
----
-
-## Results & Visualizations
-
-### 1. Naive Bayes Classifier: Test Performance
-
-<img src="images/Screenshot_2025-06-05_at_11.14.45_AM.png" width="600">
-
-**Explanation:**  
-This classification report shows Naive Bayes performance for each emotion.  
-- Best on class 0 (F1: 0.75); weaker on minority classes due to class imbalance.  
-- **Overall accuracy:** 67%
-
----
-
-### 2. CNN Model: Training and Validation Curves
-
-<img src="images/Screenshot_2025-06-05_at_11.14.57_AM.png" width="600">
-
-**Explanation:**  
-- Train/validation loss decreases steadily, showing effective model learning.
-- **Final test accuracy:** 70.23%
-- **F1 Score:** 0.6295
-
----
-
-### 3. Emotion Imbalance in Training Data
-
-<img src="images/Screenshot_2025-06-05_at_11.15.10_AM.png" width="600">
-
-**Explanation:**  
-- Class frequencies in the training set, showing a strong imbalance (anger > sadness > joy > optimism).
-
----
-
-### 4. Topic Modeling (NMF): 'Joy' Topics & Wordclouds
-
-<img src="images/Screenshot_2025-06-05_at_11.15.16_AM.png" width="600">
-
-- **Extracted Topics:**  
-  Top words for 5 distinct topics within 'Joy', e.g. "lively", "broadcast", "musically".
-
-<img src="images/Screenshot_2025-06-05_at_11.16.47_AM.png" width="600">
-<img src="images/Screenshot_2025-06-05_at_11.16.53_AM.png" width="600">
-<img src="images/Screenshot_2025-06-05_at_11.17.00_AM.png" width="600">
-<img src="images/Screenshot_2025-06-05_at_11.17.06_AM.png" width="600">
-<img src="images/Screenshot_2025-06-05_at_11.17.12_AM.png" width="600">
-
-**Explanation:**  
-Each wordcloud visualizes the most significant words for a given 'Joy' topic, helping interpret how positive emotions are expressed in social data.
-
----
-
-### 5. Topic Modeling (NMF): 'Optimism' Topics & Wordclouds
-
-<img src="images/Screenshot_2025-06-05_at_11.17.31_AM.png" width="600">
-<img src="images/Screenshot_2025-06-05_at_11.17.34_AM.png" width="600">
-<img src="images/Screenshot_2025-06-05_at_11.17.37_AM.png" width="600">
-<img src="images/Screenshot_2025-06-05_at_11.17.40_AM.png" width="600">
-<img src="images/Screenshot_2025-06-05_at_11.17.42_AM.png" width="600">
-
-**Explanation:**  
-Wordclouds for each optimism-related topic, e.g. "worry", "leadership", "fear", "life", "start", "advice", "you're", "good", "make".  
-They highlight the diverse ways optimism is discussed in the dataset.
-
----
-
-### 6. Named Entity Recognition (RoBERTa): Model Metrics
-
-<img src="images/Screenshot_2025-06-05_at_11.17.59_AM.png" width="600">
-
-**Explanation:**  
-- RoBERTa NER model achieves high precision and recall for entity extraction in biomedical text.
-- Macro F1: 0.81, Weighted F1: 0.97
-
----
-
-## Improvements & Future Work
-
-- Add data augmentation for better handling of class imbalance.
-- Explore more advanced neural models (e.g., LSTM, transformer-based emotion classification).
-- Fine-tune hyperparameters (using grid/random search).
-- Extend NER to more entity types or domains.
-- Add full end-to-end deployment demo (e.g., API or web interface).
-
----
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for details.
-
----
-
-## Contact
-
-**Uchit Bhadauriya**  
-[LinkedIn Profile](https://www.linkedin.com/in/uchit-bhadauriya-a96478204)
-
----
-
+   ```bash
+   git clone https://github.com/<your-username>/<your-repo>.git
+   cd <your-repo>
