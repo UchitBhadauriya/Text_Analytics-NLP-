@@ -1,0 +1,88 @@
+# Emotion and Entity Analysis using NLP Techniques
+
+This repository contains a comprehensive Natural Language Processing (NLP) project focused on emotion classification, topic modeling, named entity recognition (NER), and semantic similarity analysis using state-of-the-art models such as Naive Bayes, CNN, RoBERTa, and BERT/Word2Vec embeddings.
+
+## Project Structure
+
+```
+├── Naive_Bayes_1.1.ipynb
+├── Text_Analytics_1.2_Final_CNN.ipynb
+├── Text_Analytics_1.4_NMF.ipynb
+├── 2.1.ipynb
+├── Text_Analytics_2.3.ipynb
+├── Text_Analytics.pdf
+├── README.md
+```
+
+## Tasks Overview
+
+### Task 1: Emotion Classification
+
+#### 🔹 Naive Bayes
+- Simple yet effective probabilistic classifier.
+- Preprocessing includes tokenization, stopword removal, lemmatization, and count vectorization.
+- Good baseline performance with ~67% accuracy.
+
+#### 🔹 CNN Model
+- Used GloVe embeddings for transfer learning.
+- Applied convolutional and pooling layers to learn text features.
+- Achieved better performance than Naive Bayes (~70.2% accuracy and 0.63 F1-score).
+- Learning curves indicate well-tuned training and validation.
+
+### Task 2: Named Entity Recognition
+
+#### 🔹 RoBERTa Sequence Tagger
+- Used BIO tagging format with contextual embeddings.
+- Achieved high precision and F1-score, especially effective in biomedical NER.
+- Common errors and limitations analyzed with improvements suggested (e.g., Focal Loss, boundary correction).
+
+### Task 3: Topic Modeling
+
+#### 🔹 NMF for Joy and Optimism
+- TF-IDF based topic extraction revealed well-separated, interpretable themes.
+- Results visualize joy in events (e.g., birthdays, movies) and optimism in quotes and encouragement.
+
+### Task 4: Entity Similarity
+
+#### 🔹 BERT vs Word2Vec
+- BERT captured semantic similarity better with contextual embeddings.
+- Word2Vec performed faster but missed contextual richness.
+- Diseases similar/dissimilar to "dyskinesia" were identified.
+
+## Visuals
+
+Key results and plots are shown below:
+
+<p align="center">
+  <img src="images/cnn_learning_curve.png" width="500"/>
+  <img src="images/topic_model_joy.png" width="500"/>
+  <img src="images/entity_similarity_bert.png" width="500"/>
+</p>
+
+## Usage
+
+```bash
+python main.py
+```
+
+For step-by-step execution, open the Jupyter Notebooks in your IDE or Jupyter environment.
+
+Ensure that all required CSV and notebook files are in the same directory.
+
+## References
+
+- **VDJdb**: Goncharov et al. (2022)
+- **TCRdist3**: https://tcrdist3.readthedocs.io
+- **UMAP**: Becht et al. (2019)
+- IBM, Wikipedia, Medium, TowardsDataScience (as cited in report)
+
+## Contact
+
+Created by **Uchit Bhadauriya**  
+MSc Data Science – University of Bristol  
+📧 ir23063@bristol.ac.uk  
+🔗 [LinkedIn](https://www.linkedin.com/in/uchit-bhadauriya-a96478204)
+
+⭐️ Star this repo if you found it useful!  
+🛠️ Fork it to build on this work  
+❓ Open an issue for questions or collaboration
