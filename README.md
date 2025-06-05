@@ -1,3 +1,33 @@
+# Text Analytics for Emotion Classification and Biomedical Named Entity Recognition
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/uchit-bhadauriya-a96478204)
+
+## Overview
+
+This repository presents a comprehensive exploration of text analytics techniques for **emotion classification in tweets** and **biomedical named entity recognition (NER)**. It features classic machine learning models (Naive Bayes), deep learning (CNN, RoBERTa), and topic modeling (NMF), accompanied by in-depth evaluation and analysis.
+
+**Core Tasks:**
+- **Task 1:** Emotion classification in tweets using Naive Bayes and CNN
+- **Task 2:** Biomedical NER with RoBERTa and entity similarity analysis using BERT/Word2Vec
+
+---
+
+## Table of Contents
+
+- [Project Structure](#project-structure)
+- [Task 1: Emotion Classification](#task-1-emotion-classification)
+  - [1.1 Naive Bayes Classifier](#11-naive-bayes-classifier)
+  - [1.2 CNN Classifier](#12-cnn-classifier)
+  - [1.3 Evaluation & Discussion](#13-evaluation--discussion)
+  - [1.4 Topic Modeling with NMF](#14-topic-modeling-with-nmf)
+- [Task 2: Biomedical NER](#task-2-biomedical-ner)
+  - [2.1 RoBERTa-based Sequence Tagger](#21-roberta-based-sequence-tagger)
+  - [2.2 Evaluation & Results](#22-evaluation--results)
+  - [2.3 Disease Entity Similarity Analysis](#23-disease-entity-similarity-analysis)
+- [Installation & Usage](#installation--usage)
+- [Results Summary](#results-summary)
+- [References](#references)
+- [Contact](#contact)
 
 ---
 
