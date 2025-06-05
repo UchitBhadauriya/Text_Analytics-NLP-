@@ -106,6 +106,46 @@ This repository presents a comprehensive exploration of text analytics technique
 ## Installation & Usage
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/<your-username>/<your-repo>.git
    cd <your-repo>
+Install dependencies:
+
+Python ≥ 3.7
+
+Jupyter Notebook
+
+Libraries: numpy, pandas, scikit-learn, matplotlib, seaborn, nltk, gensim, torch, transformers, etc.
+
+(Install using pip install -r requirements.txt if provided.)
+
+Run Notebooks:
+
+Open notebooks with Jupyter and run sequentially for each task.
+
+Results Summary
+Emotion Classification:
+CNN outperformed Naive Bayes with higher accuracy and F1-score, thanks to feature learning and transfer learning (GloVe).
+
+Topic Modeling:
+NMF effectively revealed interpretable themes for emotions like joy and optimism.
+
+Biomedical NER:
+RoBERTa achieved state-of-the-art performance, with strong precision and recall on biomedical entities.
+
+Entity Similarity:
+BERT embeddings gave better semantic matching than Word2Vec for disease similarity analysis.
+
+References
+IBM, Naive Bayes
+
+Wikipedia, Convolutional Neural Network
+
+Medium, NMF Explained
+
+Medium, RoBERTa: A Robustly Optimized BERT Approach
+
+Contact
+Created by Uchit Bhadauriya
+Feel free to connect for questions, collaborations, or feedback!
