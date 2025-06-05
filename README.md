@@ -1,152 +1,195 @@
+# Text Analytics & Emotion Classification
 
-# 🧠 Text Analytics and Emotion Detection in Tweets
+A comprehensive project applying classical machine learning, deep learning (CNN), and advanced NLP (RoBERTa) to emotion classification, topic modeling, and named entity recognition on social text data.
 
-This project explores NLP techniques for emotion classification, topic modeling, named entity recognition (NER), and semantic similarity analysis—applied to tweets and biomedical text.
-
----
-
-## 📌 Project Structure
-
-### Task 1: Emotion Classification in Tweets
-1. **Naive Bayes Classifier** – Traditional ML with bag-of-words features.
-2. **CNN (Neural Network)** – Deep learning with pre-trained word embeddings.
-3. **NMF Topic Modeling** – Discovering themes in tweets.
-
-### Task 2: Biomedical Named Entity Recognition (NER)
-4. **RoBERTa Sequence Tagger** – Transformer model for entity recognition.
-5. **Disease Similarity** – Comparing diseases using BERT and Word2Vec embeddings.
+[Connect on LinkedIn](https://www.linkedin.com/in/uchit-bhadauriya-a96478204)
 
 ---
 
-## 🎯 Motivation
+## 📋 Table of Contents
 
-Understanding sentiment and extracting structured knowledge from unstructured biomedical or social media text is critical for applications in public health, social insight, and automated text systems. This project compares non-neural and neural NLP approaches in terms of performance and interpretability.
-
----
-
-## 🧰 Tech Stack
-
-- **Languages**: Python
-- **Libraries**: `scikit-learn`, `nltk`, `spacy`, `tensorflow`, `keras`, `transformers`, `gensim`, `matplotlib`, `pandas`
-- **Models**:
-  - Naive Bayes
-  - CNN (with GloVe embeddings)
-  - RoBERTa (HuggingFace Transformers)
-  - NMF
-  - BERT & Word2Vec (Similarity analysis)
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [Tasks & Methods](#tasks--methods)
+- [Getting Started](#getting-started)
+- [Results & Visualizations](#results--visualizations)
+- [Improvements & Future Work](#improvements--future-work)
+- [License](#license)
+- [Contact](#contact)
 
 ---
 
-## 📂 Repository Files
+## Overview
 
-| File | Description |
-|------|-------------|
-| `Naive_Bayes_1.1.ipynb` | Emotion classification using Naive Bayes |
-| `Text_Analytics_1.2_Final_CNN.ipynb` | CNN-based tweet emotion classifier |
-| `Text_Analytics_1.4_NMF.ipynb` | Topic modeling using NMF |
-| `2.1.ipynb` | RoBERTa-based Named Entity Recognizer |
-| `Text_Analytics_2.3.ipynb` | BERT & Word2Vec disease similarity |
-| `Text_Analytics.pdf` | Full report with methodology, metrics & interpretation |
+This project explores an end-to-end NLP workflow including:
+- **Emotion classification** with Naive Bayes and CNNs
+- **Topic modeling** using Non-negative Matrix Factorization (NMF)
+- **Named Entity Recognition (NER)** with a transformer (RoBERTa)
+- **Biomedical entity similarity analysis**
 
----
-
-## ⚙️ Installation
-
-```bash
-git clone https://github.com/yourusername/text-analytics-nlp.git
-cd text-analytics-nlp
-pip install -r requirements.txt
-```
+All results are demonstrated on imbalanced, real-world text datasets, with interpretability and practical evaluation in focus.
 
 ---
 
-## 🚀 How to Run
+## Project Structure
 
-- Run each notebook in order via Jupyter Notebook.
-- Ensure that models requiring GloVe or RoBERTa are set up correctly (e.g., download weights if prompted).
 
 ---
 
-## 📊 Evaluation & Results (with Visuals)
+## Tasks & Methods
 
-### ✅ Naive Bayes (Multinomial)
+### 1. Emotion Classification
 
-- **Test Accuracy**: `67%`
-- **Macro F1 Score**: `0.60`
+#### Naive Bayes Classifier
+- **Preprocessing:** Tokenization, lowercasing, noise removal (URLs, mentions, hashtags, punctuation, numbers), stopword removal, lemmatization.
+- **Features:** CountVectorizer (word counts).
+- **Strengths:** Fast, simple, good for small/imbalanced datasets.
+- **Limitations:** Independence assumption, struggles with feature correlations.
 
-**Test Set Classification Report:**
-
-![Naive Bayes Classification Report](./Screenshot%202025-06-05%20at%2011.14.45%20AM_resized.png)
-
-> 📌 Naive Bayes performs well for the "Anger" class (F1 = 0.75), but underperforms on minority classes like "Optimism", highlighting sensitivity to class imbalance.
-
----
-
-### ✅ CNN (Deep Learning Model with GloVe)
-
-- **Test Accuracy**: `70.23%`
-- **F1 Score**: `0.6295`
-
-**Training vs. Validation Loss Curve:**
-
-![CNN Training Curve](./Screenshot%202025-06-05%20at%2011.14.57%20AM_resized.png)
-
-> 📉 The validation loss begins to plateau after epoch 7, suggesting mild overfitting. Early stopping could be considered to improve generalization.
+#### Convolutional Neural Network (CNN)
+- **Preprocessing:** Same as above + sequence padding for input.
+- **Features:** Pre-trained embeddings (e.g., GloVe).
+- **Strengths:** Learns local/hierarchical features, benefits from transfer learning.
+- **Limitations:** Needs more data, higher computation.
 
 ---
 
-### 📈 Topic Modeling: NMF
+### 2. Topic Modeling (NMF)
 
-**Class Distribution of Emotions:**
-
-![Emotion Frequency Bar Chart](./Screenshot%202025-06-05%20at%2011.15.10%20AM_resized.png)
-
-##### 🔹 *Top 5 Joy Topics (NMF) with Word Clouds:*
-
-- **Topic 1 – Media & Events**
-![Topic 1 - Joy](./Screenshot%202025-06-05%20at%2011.15.16%20AM_resized.png)
-
-- **Topic 2 – Humor & Movies**
-![Topic 2 - Joy](./Screenshot%202025-06-05%20at%2011.16.47%20AM_resized.png)
-
-- **Topic 3 – Celebration & Emotions**
-![Topic 3 - Joy](./Screenshot%202025-06-05%20at%2011.16.53%20AM_resized.png)
-
-- **Topic 4 – Friendship & Gratitude**
-![Topic 4 - Joy](./Screenshot%202025-06-05%20at%2011.17.00%20AM_resized.png)
-
-- **Topic 5 – Fun & Social Interaction**
-![Topic 5 - Joy](./Screenshot%202025-06-05%20at%2011.17.06%20AM_resized.png)
+- **Steps:** Tokenization, lowercasing, stopword removal, TF-IDF transformation.
+- **Goal:** Extract latent topics/word groups for each emotion label, providing insight into how emotions are expressed.
 
 ---
 
-##### 🔹 *Optimism Themes (NMF) with Word Cloud:*
+### 3. Named Entity Recognition (NER) with RoBERTa
 
-- **Topic 1 – Leadership, Worry, Resilience**
-
-![Topic 1 - Optimism](./Screenshot%202025-06-05%20at%2011.17.12%20AM_resized.png)
+- **Architecture:** Fine-tuned RoBERTa transformer with BIO tagging.
+- **Features:** RoBERTa embeddings, POS tags, character/context features.
+- **Strengths:** High contextual understanding, state-of-the-art results.
 
 ---
 
-## 🧑‍💻 Author
+### 4. Biomedical Entity Similarity
+
+- **Techniques:** BERT embeddings, Word2Vec, cosine similarity.
+- **Goal:** Identify most/least similar disease entities in biomedical text.
+
+---
+
+## Getting Started
+
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/<your-username>/<repo-name>.git
+    cd <repo-name>
+    ```
+
+2. **Install requirements:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Run notebooks:**
+    - Launch Jupyter and open any notebook of interest.
+    - Execute cells to preprocess, train, and evaluate models.
+
+---
+
+## Results & Visualizations
+
+### 1. Naive Bayes Classifier: Test Performance
+
+<img src="images/Screenshot_2025-06-05_at_11.14.45_AM.png" width="600">
+
+**Explanation:**  
+This classification report shows Naive Bayes performance for each emotion.  
+- Best on class 0 (F1: 0.75); weaker on minority classes due to class imbalance.  
+- **Overall accuracy:** 67%
+
+---
+
+### 2. CNN Model: Training and Validation Curves
+
+<img src="images/Screenshot_2025-06-05_at_11.14.57_AM.png" width="600">
+
+**Explanation:**  
+- Train/validation loss decreases steadily, showing effective model learning.
+- **Final test accuracy:** 70.23%
+- **F1 Score:** 0.6295
+
+---
+
+### 3. Emotion Imbalance in Training Data
+
+<img src="images/Screenshot_2025-06-05_at_11.15.10_AM.png" width="600">
+
+**Explanation:**  
+- Class frequencies in the training set, showing a strong imbalance (anger > sadness > joy > optimism).
+
+---
+
+### 4. Topic Modeling (NMF): 'Joy' Topics & Wordclouds
+
+<img src="images/Screenshot_2025-06-05_at_11.15.16_AM.png" width="600">
+
+- **Extracted Topics:**  
+  Top words for 5 distinct topics within 'Joy', e.g. "lively", "broadcast", "musically".
+
+<img src="images/Screenshot_2025-06-05_at_11.16.47_AM.png" width="600">
+<img src="images/Screenshot_2025-06-05_at_11.16.53_AM.png" width="600">
+<img src="images/Screenshot_2025-06-05_at_11.17.00_AM.png" width="600">
+<img src="images/Screenshot_2025-06-05_at_11.17.06_AM.png" width="600">
+<img src="images/Screenshot_2025-06-05_at_11.17.12_AM.png" width="600">
+
+**Explanation:**  
+Each wordcloud visualizes the most significant words for a given 'Joy' topic, helping interpret how positive emotions are expressed in social data.
+
+---
+
+### 5. Topic Modeling (NMF): 'Optimism' Topics & Wordclouds
+
+<img src="images/Screenshot_2025-06-05_at_11.17.31_AM.png" width="600">
+<img src="images/Screenshot_2025-06-05_at_11.17.34_AM.png" width="600">
+<img src="images/Screenshot_2025-06-05_at_11.17.37_AM.png" width="600">
+<img src="images/Screenshot_2025-06-05_at_11.17.40_AM.png" width="600">
+<img src="images/Screenshot_2025-06-05_at_11.17.42_AM.png" width="600">
+
+**Explanation:**  
+Wordclouds for each optimism-related topic, e.g. "worry", "leadership", "fear", "life", "start", "advice", "you're", "good", "make".  
+They highlight the diverse ways optimism is discussed in the dataset.
+
+---
+
+### 6. Named Entity Recognition (RoBERTa): Model Metrics
+
+<img src="images/Screenshot_2025-06-05_at_11.17.59_AM.png" width="600">
+
+**Explanation:**  
+- RoBERTa NER model achieves high precision and recall for entity extraction in biomedical text.
+- Macro F1: 0.81, Weighted F1: 0.97
+
+---
+
+## Improvements & Future Work
+
+- Add data augmentation for better handling of class imbalance.
+- Explore more advanced neural models (e.g., LSTM, transformer-based emotion classification).
+- Fine-tune hyperparameters (using grid/random search).
+- Extend NER to more entity types or domains.
+- Add full end-to-end deployment demo (e.g., API or web interface).
+
+---
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for details.
+
+---
+
+## Contact
 
 **Uchit Bhadauriya**  
-MSc Data Science, University of Bristol  
-🔗 [LinkedIn](https://www.linkedin.com/in/uchit-bhadauriya-a96478204)
+[LinkedIn Profile](https://www.linkedin.com/in/uchit-bhadauriya-a96478204)
 
 ---
 
-## 📄 License
-
-MIT License. See `LICENSE` for usage permissions.
-
----
-
-## 🙏 Acknowledgements
-
-- [HuggingFace Transformers](https://huggingface.co/)
-- [Stanford GloVe](https://nlp.stanford.edu/projects/glove/)
-- [Scikit-learn documentation](https://scikit-learn.org/)
-- [Medium article on NMF](https://medium.com/@neri.vvo/non-negative-matrix-factorization-explained-practical-how-to-guide-in-python-c6372f2f6779)
-
----
