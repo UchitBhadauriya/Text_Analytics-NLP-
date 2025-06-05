@@ -124,7 +124,7 @@ Make sure all notebooks and required data are in the root directory.
 
 **Uchit Bhadauriya**  
 MSc Data Science – University of Bristol  
-📧 ir23063@bristol.ac.uk  
+📧 uchitbhadauriya540@gmail.com  
 🔗 [LinkedIn](https://www.linkedin.com/in/uchit-bhadauriya-a96478204)
 
 ---
